@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     backgroundColor: '#fff',
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: 'blue',
   },
   completedItem: {
     textDecorationLine: 'line-through',
