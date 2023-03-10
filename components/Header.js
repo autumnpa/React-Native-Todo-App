@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   header: {
     height: 100,
     paddingTop: 42,
-    backgroundColor: 'blue',
+    backgroundColor: '#007AFF',
   },
   // Styles the text/title inside the header area
   title: {

@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   addTodoInput: {
     flex: 1,
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: '#007AFF',
     paddingVertical: 10,
     paddingHorizontal: 16,
     fontSize: 18,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   addTodoButton: {
-    backgroundColor: '#3498db',
+    backgroundColor: '#007AFF',
     borderRadius: 6,
     padding: 10,
   },
