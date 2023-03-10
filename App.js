@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
+import Header from './components/Header';
 
 export default function App() {
   // Array of tasks for testing purposes
@@ -12,7 +13,8 @@ export default function App() {
   return (
     // Views are like divs - they wrap elements in a container together
     <View style={styles.container}>
-      {/* Header */}
+      {/* Add Header component I created here */}
+      <Header />
       <View style={styles.content}>
         {/* Contains full list content */}
         <View style={styles.list}>
@@ -23,8 +25,8 @@ export default function App() {
             data={todos}
             // renderItem function renders each item for the list
             renderItem={({item}) => (
-                // Output the item with text component
-            <Text>{item.text}</Text>
+              // Output the item with text component
+              <Text>{item.text}</Text>
             )}
           />
         </View>
