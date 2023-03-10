@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, FlatList, TextInput} from 'react-native';
 import Header from './components/Header';
 import Todo from './components/Todo';
-import AddTodo from './components/AddTodo';
 
 let text = ' ';
 
@@ -53,18 +52,18 @@ export default function App() {
     setTodos(newTodos);
   };
 
-  const TempHeader = () => {
-    return (
-      <View style={styles.addTodoContainer}>
-        <TextInput
-          style={styles.addTodoInput}
-          onChangeText={input => (text = input)}
-          placeholder="Add Todo"
-        />
-        <AddTodo onPress={newTodo} />
-      </View>
-    );
-  };
+  // const TempHeader = () => {
+  //   return (
+  //     <View style={styles.addTodoContainer}>
+  //       <TextInput
+  //         style={styles.addTodoInput}
+  //         onChangeText={input => (text = input)}
+  //         placeholder="Add Todo"
+  //       />
+  //       <AddTodo onPress={newTodo} />
+  //     </View>
+  //   );
+  // };
 
   return (
     // Views are like divs - they wrap elements in a container together
@@ -89,7 +88,7 @@ export default function App() {
           {/* FlatList needs specific props - check them in documentation Arlin linked */}
           {/* Needs data prop and renderItem function */}
           <FlatList
-            ListHeaderComponent={TempHeader}
+            ListHeaderComponent={() => <Header onPress={newTodo} />}
             data={todos}
             // renderItem function renders each item for the list
             renderItem={({item}) => (
@@ -118,19 +117,19 @@ const styles = StyleSheet.create({
   list: {
     marginTop: 20,
   },
-  addTodoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  addTodoInput: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: '#007AFF',
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    fontSize: 18,
-    borderRadius: 6,
-    marginRight: 10,
-  },
+  // addTodoContainer: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   marginBottom: 20,
+  // },
+  // addTodoInput: {
+  //   flex: 1,
+  //   borderWidth: 1,
+  //   borderColor: '#007AFF',
+  //   paddingVertical: 10,
+  //   paddingHorizontal: 16,
+  //   fontSize: 18,
+  //   borderRadius: 6,
+  //   marginRight: 10,
+  // },
 });
