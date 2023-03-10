@@ -7,7 +7,11 @@ export default function Todo({item, toggleTodo, deleteTodo}) {
     // Makes views respond to touches
     <TouchableOpacity
       style={styles.itemContainer}
+      //   Renders a component that changes the text and styling based on if its completed or not
+      // When pressed it calls toggle todo function passing in the items key value and changing the completed state
       onPress={() => toggleTodo(item.key)}
+      //   Renders to delete
+      // When pressed it calls the delete todo function passing in the items key value removing it from the list
       onLongPress={() => deleteTodo(item.key)}>
       {/* Outputs and item */}
       <Text
@@ -25,8 +29,19 @@ const styles = StyleSheet.create({
   item: {
     padding: 20,
     marginTop: 20,
-    borderColor: 'black',
-    borderWidth: 1,
-    borderStyle: 'solid',
+  },
+  itemContainer: {
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  completedItem: {
+    textDecorationLine: 'line-through',
+    color: '#aaa',
+  },
+  incompleteItem: {
+    color: '#333',
   },
 });
