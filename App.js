@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import Header from './components/Header';
+import Todo from './components/Todo';
 
 export default function App() {
   // Array of tasks for testing purposes
@@ -26,7 +27,7 @@ export default function App() {
             // renderItem function renders each item for the list
             renderItem={({item}) => (
               // Output the item with text component
-              <Text>{item.text}</Text>
+              <Todo item={item} />
             )}
           />
         </View>
