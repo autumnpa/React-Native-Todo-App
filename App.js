@@ -19,10 +19,10 @@ export default function App() {
     {text: 'task 3', key: '3', completed: false},
   ]);
 
-//   Define a state called text and a function to set the state variable
+  //   Define a state called text and a function to set the state variable
   const [text, setText] = useState('');
 
-//   newTodo function creates a new todo item with unique key
+  //   newTodo function creates a new todo item with unique key
   newTodo = () => {
     // Checking if user has entered some text
     // If its true the new todo item is added into the array using setTodos function
@@ -30,9 +30,10 @@ export default function App() {
       // Use key/values from array of tasks in placeholder above
       setTodos([
         ...todos,
-        {text: text, key: Date.now().toString(), completed: false}]);
-        // Text state variable is set to empty after the input field is cleared once a todo item is added
-        setText('');
+        {text: text, key: Date.now().toString(), completed: false},
+      ]);
+      // Text state variable is set to empty after the input field is cleared once a todo item is added
+      setText('');
     }
   };
 
@@ -42,6 +43,17 @@ export default function App() {
       {/* Add Header component I created here */}
       <Header />
       <View style={styles.content}>
+        <View style={styles.addTodoContainer}>
+          <TextInput
+            style={styles.addTodoInput}
+            onChangeText={text => setText(text)}
+            value={text}
+            placeholder="Add Todo"
+          />
+          <TouchableOpacity style={styles.addTodoButton} onPress={addTodo}>
+            <Text style={styles.addTodoButtonText}>+</Text>
+          </TouchableOpacity>
+        </View>
         {/* Contains full list content */}
         <View style={styles.list}>
           {/* Contains the list items */}
@@ -71,5 +83,30 @@ const styles = StyleSheet.create({
   },
   list: {
     marginTop: 30,
+  },
+  addTodoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  addTodoInput: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    fontSize: 18,
+    borderRadius: 6,
+    marginRight: 10,
+  },
+  addTodoButton: {
+    backgroundColor: '#3498db',
+    borderRadius: 6,
+    padding: 10,
+  },
+  addTodoButtonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
