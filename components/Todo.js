@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
   itemContainer: {
     paddingVertical: 16,
     paddingHorizontal: 16,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     borderBottomWidth: 1,
     borderBottomColor: 'blue',
   },
   completedItem: {
     textDecorationLine: 'line-through',
-    color: '#aaa',
+    color: 'grey',
   },
   incompleteItem: {
     color: '#333',
