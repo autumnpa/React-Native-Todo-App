@@ -72,8 +72,8 @@ export default function App() {
       {/* <Header /> */}
       {/* Fix header to stop it from hiding items beyond screen view */}
       {/* <View style={styles.content}> */}
-        {/* Contains full list content */}
-        <View style={styles.content}>
+      {/* Contains full list content */}
+      <View style={styles.content}>
         <View style={styles.addTodoContainer}>
           <TextInput
             style={styles.addTodoInput}
@@ -112,10 +112,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   content: {
-    padding: 50,
+    padding: 40,
   },
   list: {
-    marginTop: 30,
+    marginTop: 20,
   },
   addTodoContainer: {
     flexDirection: 'row',

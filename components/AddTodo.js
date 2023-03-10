@@ -7,7 +7,7 @@ const AddTodo = props => {
 
 const styles = StyleSheet.create({
   button: {
-    // Why does the styling show up?
+    // Why does the styling not show up?
     backgroundColor: '#007AFF',
     borderRadius: 6,
     paddingVertical: 12,
