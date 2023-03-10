@@ -1,15 +1,40 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
 import Header from './components/Header';
 import Todo from './components/Todo';
 
 export default function App() {
   // Array of tasks for testing purposes
+  //   Reference React.js todo app code from other exercise/assignment
   const [todos, setTodos] = useState([
-    {text: 'task 1', key: '1'},
-    {text: 'task 2', key: '2'},
-    {text: 'task 3', key: '3'},
+    {text: 'task 1', key: '1', completed: false},
+    {text: 'task 2', key: '2', completed: false},
+    {text: 'task 3', key: '3', completed: false},
   ]);
+
+//   Define a state called text and a function to set the state variable
+  const [text, setText] = useState('');
+
+//   newTodo function creates a new todo item with unique key
+  newTodo = () => {
+    // Checking if user has entered some text
+    // If its true the new todo item is added into the array using setTodos function
+    if (text.length > 0) {
+      // Use key/values from array of tasks in placeholder above
+      setTodos([
+        ...todos,
+        {text: text, key: Date.now().toString(), completed: false}]);
+        // Text state variable is set to empty after the input field is cleared once a todo item is added
+        setText('');
+    }
+  };
 
   return (
     // Views are like divs - they wrap elements in a container together
