@@ -52,37 +52,14 @@ export default function App() {
     setTodos(newTodos);
   };
 
-  // const TempHeader = () => {
-  //   return (
-  //     <View style={styles.addTodoContainer}>
-  //       <TextInput
-  //         style={styles.addTodoInput}
-  //         onChangeText={input => (text = input)}
-  //         placeholder="Add Todo"
-  //       />
-  //       <AddTodo onPress={newTodo} />
-  //     </View>
-  //   );
-  // };
+  const updateText = (new) => {
+    text = new;
+  };
 
   return (
     // Views are like divs - they wrap elements in a container together
     <View style={styles.container}>
-      {/* Add Header component I created here */}
-      {/* <Header /> */}
-      {/* Fix header to stop it from hiding items beyond screen view */}
-      {/* <View style={styles.content}> */}
-      {/* Contains full list content */}
       <View style={styles.content}>
-        {/* <View style={styles.addTodoContainer}>
-          <TextInput
-            style={styles.addTodoInput}
-            onChangeText={text => setText(text)}
-            value={text}
-            placeholder="Add Todo"
-          />
-          <AddTodo onPress={newTodo} />
-        </View> */}
         <View style={styles.list}>
           {/* Contains the list items */}
           {/* FlatList needs specific props - check them in documentation Arlin linked */}
@@ -117,19 +94,4 @@ const styles = StyleSheet.create({
   list: {
     marginTop: 20,
   },
-  // addTodoContainer: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   marginBottom: 20,
-  // },
-  // addTodoInput: {
-  //   flex: 1,
-  //   borderWidth: 1,
-  //   borderColor: '#007AFF',
-  //   paddingVertical: 10,
-  //   paddingHorizontal: 16,
-  //   fontSize: 18,
-  //   borderRadius: 6,
-  //   marginRight: 10,
-  // },
 });
