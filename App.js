@@ -38,4 +38,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  content: {
+    padding: 50,
+  },
+  list: {
+    marginTop: 30,
+  },
 });
