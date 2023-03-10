@@ -23,7 +23,7 @@ export default function App() {
   const [text, setText] = useState('');
 
   //   newTodo function creates a new todo item with unique key
-  newTodo = () => {
+  const newTodo = () => {
     // Checking if user has entered some text
     // If its true the new todo item is added into the array using setTodos function
     if (text.length > 0) {
@@ -50,7 +50,7 @@ export default function App() {
             value={text}
             placeholder="Add Todo"
           />
-          <TouchableOpacity style={styles.addTodoButton} onPress={addTodo}>
+          <TouchableOpacity style={styles.addTodoButton} onPress={newTodo}>
             <Text style={styles.addTodoButtonText}>+</Text>
           </TouchableOpacity>
         </View>
