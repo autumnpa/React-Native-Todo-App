@@ -37,6 +37,25 @@ export default function App() {
     }
   };
 
+  const toggleTodo = id => {
+    const newTodos = todos.map(todo => {
+      if (todo.key === id) {
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      } else {
+        return todo;
+      }
+    });
+    setTodos(newTodos);
+  };
+
+  const deleteTodo = id => {
+    const newTodos = todos.filter(todo => todo.key !== id);
+    setTodos(newTodos);
+  };
+
   return (
     // Views are like divs - they wrap elements in a container together
     <View style={styles.container}>
@@ -64,7 +83,11 @@ export default function App() {
             // renderItem function renders each item for the list
             renderItem={({item}) => (
               // Output the item with text component
-              <Todo item={item} />
+              <Todo
+                item={item}
+                toggleTodo={toggleTodo}
+                deleteTodo={deleteTodo}
+              />
             )}
           />
         </View>
