@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
 
 export default function App() {
   return (
@@ -8,7 +8,11 @@ export default function App() {
       {/* Header */}
       <View style={styles.content}>
         {/* Contains full list content */}
-        <View style={styles.list}>{/* Contains the list items */}</View>
+        <View style={styles.list}>{/* Contains the list items */}
+        {/* FlatList needs specific props - check them in documentation Arlin linked */}
+        <FlatList data={todos}
+        renderItem={() => ()} />
+        </View>
       </View>
     </View>
   );
