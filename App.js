@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import {View, Text, StyleSheet, FlatList, TextInput} from 'react-native';
 import Header from './components/Header';
 import Todo from './components/Todo';
 import AddTodo from './components/AddTodo';
@@ -58,19 +51,19 @@ export default function App() {
     setTodos(newTodos);
   };
 
-  const TempHeader = () => {
-    return (
-      <View style={styles.addTodoContainer}>
-        <TextInput
-          style={styles.addTodoInput}
-          onChangeText={text => setText(text)}
-          value={text}
-          placeholder="Add Todo"
-        />
-        <AddTodo onPress={newTodo} />
-      </View>
-    );
-  };
+  // const TempHeader = () => {
+  //   return (
+  //     <View style={styles.addTodoContainer}>
+  //       <TextInput
+  //         style={styles.addTodoInput}
+  //         onChangeText={text => setText(text)}
+  //         value={text}
+  //         placeholder="Add Todo"
+  //       />
+  //       <AddTodo onPress={newTodo} />
+  //     </View>
+  //   );
+  // };
 
   return (
     // Views are like divs - they wrap elements in a container together
@@ -78,14 +71,24 @@ export default function App() {
       {/* Add Header component I created here */}
       {/* <Header /> */}
       {/* Fix header to stop it from hiding items beyond screen view */}
-      <View style={styles.content}>
+      {/* <View style={styles.content}> */}
         {/* Contains full list content */}
+        <View style={styles.content}>
+        <View style={styles.addTodoContainer}>
+          <TextInput
+            style={styles.addTodoInput}
+            onChangeText={text => setText(text)}
+            value={text}
+            placeholder="Add Todo"
+          />
+          <AddTodo onPress={newTodo} />
+        </View>
         <View style={styles.list}>
           {/* Contains the list items */}
           {/* FlatList needs specific props - check them in documentation Arlin linked */}
           {/* Needs data prop and renderItem function */}
           <FlatList
-            ListHeaderComponent={TempHeader}
+            // ListHeaderComponent={TempHeader}
             data={todos}
             // renderItem function renders each item for the list
             renderItem={({item}) => (
