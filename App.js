@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Header from './components/Header';
 import Todo from './components/Todo';
+import AddTodo from './components/AddTodo';
 
 export default function App() {
   // Array of tasks for testing purposes
@@ -24,6 +25,7 @@ export default function App() {
 
   //   newTodo function creates a new todo item with unique key
   const newTodo = () => {
+    console.log('helllllooooo');
     // Checking if user has entered some text
     // If its true the new todo item is added into the array using setTodos function
     if (text.length > 0) {
@@ -56,29 +58,34 @@ export default function App() {
     setTodos(newTodos);
   };
 
+  const TempHeader = () => {
+    return (
+      <View style={styles.addTodoContainer}>
+        <TextInput
+          style={styles.addTodoInput}
+          onChangeText={text => setText(text)}
+          value={text}
+          placeholder="Add Todo"
+        />
+        <AddTodo onPress={newTodo} />
+      </View>
+    );
+  };
+
   return (
     // Views are like divs - they wrap elements in a container together
     <View style={styles.container}>
       {/* Add Header component I created here */}
-      <Header />
+      {/* <Header /> */}
+      {/* Fix header to stop it from hiding items beyond screen view */}
       <View style={styles.content}>
-        <View style={styles.addTodoContainer}>
-          <TextInput
-            style={styles.addTodoInput}
-            onChangeText={text => setText(text)}
-            value={text}
-            placeholder="Add Todo"
-          />
-          <TouchableOpacity style={styles.addTodoButton} onPress={newTodo}>
-            <Text style={styles.addTodoButtonText}>+</Text>
-          </TouchableOpacity>
-        </View>
         {/* Contains full list content */}
         <View style={styles.list}>
           {/* Contains the list items */}
           {/* FlatList needs specific props - check them in documentation Arlin linked */}
           {/* Needs data prop and renderItem function */}
           <FlatList
+            ListHeaderComponent={TempHeader}
             data={todos}
             // renderItem function renders each item for the list
             renderItem={({item}) => (
@@ -121,15 +128,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderRadius: 6,
     marginRight: 10,
-  },
-  addTodoButton: {
-    backgroundColor: '#007AFF',
-    borderRadius: 6,
-    padding: 10,
-  },
-  addTodoButtonText: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
   },
 });
