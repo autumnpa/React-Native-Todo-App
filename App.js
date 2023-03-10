@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Todo from './components/Todo';
 import AddTodo from './components/AddTodo';
 
+let text = ' ';
+
 export default function App() {
   // Array of tasks for testing purposes
   //   Reference React.js todo app code from other exercise/assignment
@@ -14,7 +16,7 @@ export default function App() {
   ]);
 
   //   Define a state called text and a function to set the state variable
-  const [text, setText] = useState('');
+  // const [text, setText] = useState('');
 
   //   newTodo function creates a new todo item with unique key
   const newTodo = () => {
@@ -28,7 +30,7 @@ export default function App() {
         {text: text, key: Date.now().toString(), completed: false},
       ]);
       // Text state variable is set to empty after the input field is cleared once a todo item is added
-      setText('');
+      text = '';
     }
   };
 
@@ -51,19 +53,18 @@ export default function App() {
     setTodos(newTodos);
   };
 
-  // const TempHeader = () => {
-  //   return (
-  //     <View style={styles.addTodoContainer}>
-  //       <TextInput
-  //         style={styles.addTodoInput}
-  //         onChangeText={text => setText(text)}
-  //         value={text}
-  //         placeholder="Add Todo"
-  //       />
-  //       <AddTodo onPress={newTodo} />
-  //     </View>
-  //   );
-  // };
+  const TempHeader = () => {
+    return (
+      <View style={styles.addTodoContainer}>
+        <TextInput
+          style={styles.addTodoInput}
+          onChangeText={input => (text = input)}
+          placeholder="Add Todo"
+        />
+        <AddTodo onPress={newTodo} />
+      </View>
+    );
+  };
 
   return (
     // Views are like divs - they wrap elements in a container together
@@ -74,7 +75,7 @@ export default function App() {
       {/* <View style={styles.content}> */}
       {/* Contains full list content */}
       <View style={styles.content}>
-        <View style={styles.addTodoContainer}>
+        {/* <View style={styles.addTodoContainer}>
           <TextInput
             style={styles.addTodoInput}
             onChangeText={text => setText(text)}
@@ -82,13 +83,13 @@ export default function App() {
             placeholder="Add Todo"
           />
           <AddTodo onPress={newTodo} />
-        </View>
+        </View> */}
         <View style={styles.list}>
           {/* Contains the list items */}
           {/* FlatList needs specific props - check them in documentation Arlin linked */}
           {/* Needs data prop and renderItem function */}
           <FlatList
-            // ListHeaderComponent={TempHeader}
+            ListHeaderComponent={TempHeader}
             data={todos}
             // renderItem function renders each item for the list
             renderItem={({item}) => (
