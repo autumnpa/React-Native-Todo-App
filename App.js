@@ -1,89 +1,97 @@
 import React, {useState} from 'react';
 import {
-  StyleSheet,
-  Text,
   View,
-  ScrollView,
+  Text,
+  StyleSheet,
   FlatList,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
+import Header from './components/Header';
+import Todo from './components/Todo';
 
-function App() {
-  // State variable for todos list
-  const [todos, setTodos] = useState([]);
-  // State variable for new todos
-  const [newTodo, setNewTodo] = useState('');
-  // Add a new todo to the list of todos
-  const handleAddTodo = () => {
-    setTodos([...todos, {id: Date.now(), text: newTodo, completed: false}]);
-    setNewTodo('');
+export default function App() {
+  // Array of tasks for testing purposes
+  //   Reference React.js todo app code from other exercise/assignment
+  const [todos, setTodos] = useState([
+    {text: 'task 1', key: '1', completed: false},
+    {text: 'task 2', key: '2', completed: false},
+    {text: 'task 3', key: '3', completed: false},
+  ]);
+
+  //   Define a state called text and a function to set the state variable
+  const [text, setText] = useState('');
+
+  //   newTodo function creates a new todo item with unique key
+  const newTodo = () => {
+    // Checking if user has entered some text
+    // If its true the new todo item is added into the array using setTodos function
+    if (text.length > 0) {
+      // Use key/values from array of tasks in placeholder above
+      setTodos([
+        ...todos,
+        {text: text, key: Date.now().toString(), completed: false},
+      ]);
+      // Text state variable is set to empty after the input field is cleared once a todo item is added
+      setText('');
+    }
   };
-  // Toggle completed state of todo item
-  const handleToggleCompleted = id => {
-    setTodos(
-      todos.map(todo => {
-        if (todo.id === id) {
-          return {...todo, completed: !todo.completed};
-        } else {
-          return todo;
-        }
-      }),
-    );
+
+  const toggleTodo = id => {
+    const newTodos = todos.map(todo => {
+      if (todo.key === id) {
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      } else {
+        return todo;
+      }
+    });
+    setTodos(newTodos);
   };
-  // Delete a todo item
-  const handleDeleteTodo = id => {
-    setTodos(todos.filter(todo => todo.id !== id));
+
+  const deleteTodo = id => {
+    const newTodos = todos.filter(todo => todo.key !== id);
+    setTodos(newTodos);
   };
 
   return (
+    // Views are like divs - they wrap elements in a container together
     <View style={styles.container}>
-      {/* Add TextInput to add new todos */}
-      <View style={styles.inputContainer}>
-        <Text
-          style={styles.input}
-          value={newTodo}
-          onChangeText={text => setNewTodo(text)}
-          placeholder="Add new todo"
-          onSubmitEditing={handleAddTodo}
-        />
-        <TouchableOpacity style={styles.addButton} onPress={handleAddTodo}>
-          <Text style={styles.addButtonText}>Add</Text>
-        </TouchableOpacity>
-      </View>
-      {/* Render the todo list items using FlatList or ScrollView */}
-      <FlatList
-        data={todos}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => (
-          <TouchableOpacity onPress={() => handleToggleCompleted(item.id)}>
-            <View style={styles.todoContainer}>
-              {/* Checkbox to represent completed state of item */}
-              <View style={styles.checkboxContainer}>
-                <View
-                  style={[
-                    styles.checkbox,
-                    item.completed && styles.checkedCheckbox,
-                  ]}
-                />
-              </View>
-              {/* Styling for completed items */}
-              <Text
-                style={[
-                  styles.todoText,
-                  item.completed && styles.completedTodoText,
-                ]}>
-                {item.text}
-              </Text>
-              {/* Renders a delete button w/each list item that renders */}
-              <TouchableOpacity
-                style={styles.deleteButton}
-                onPress={() => handleDeleteTodo(item.id)}>
-                <Text style={styles.deleteButtonText}>Delete</Text>
-              </TouchableOpacity>
-            </View>
+      {/* Add Header component I created here */}
+      <Header />
+      <View style={styles.content}>
+        <View style={styles.addTodoContainer}>
+          <TextInput
+            style={styles.addTodoInput}
+            onChangeText={text => setText(text)}
+            value={text}
+            placeholder="Add Todo"
+          />
+          <TouchableOpacity style={styles.addTodoButton} onPress={newTodo}>
+            <Text style={styles.addTodoButtonText}>+</Text>
           </TouchableOpacity>
-        )}
-      />
+        </View>
+        {/* Contains full list content */}
+        <View style={styles.list}>
+          {/* Contains the list items */}
+          {/* FlatList needs specific props - check them in documentation Arlin linked */}
+          {/* Needs data prop and renderItem function */}
+          <FlatList
+            data={todos}
+            // renderItem function renders each item for the list
+            renderItem={({item}) => (
+              // Output the item with text component
+              <Todo
+                item={item}
+                toggleTodo={toggleTodo}
+                deleteTodo={deleteTodo}
+              />
+            )}
+          />
+        </View>
+      </View>
     </View>
   );
 }
@@ -91,43 +99,37 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingTop: 50,
+    backgroundColor: 'white',
   },
-  inputContainer: {
+  content: {
+    padding: 50,
+  },
+  list: {
+    marginTop: 30,
+  },
+  addTodoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginHorizontal: 20,
     marginBottom: 20,
   },
-  input: {
+  addTodoInput: {
     flex: 1,
-    height: 40,
-    borderColor: 'gray',
     borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
+    borderColor: '#ddd',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    fontSize: 18,
+    borderRadius: 6,
     marginRight: 10,
   },
-  addButton: {
-    backgroundColor: '#009688',
-    borderRadius: 5,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+  addTodoButton: {
+    backgroundColor: '#3498db',
+    borderRadius: 6,
+    padding: 10,
   },
-  addButtonText: {
+  addTodoButtonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
   },
-  todoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
 });
-
-export default App;
