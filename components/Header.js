@@ -2,15 +2,18 @@ import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import AddTodo from './AddTodo';
 
-// const AddTodo = props => {
-//   return <Button title="+" onPress={props.onPress} styles={styles.button} />;
-// };
+// Update this to use the updated text variable from App.js
 const Header = props => {
+  const onChangeText = input => {
+    props.updateText(input);
+  };
+
   return (
     <View style={styles.addTodoContainer}>
       <TextInput
         style={styles.addTodoInput}
-        onChangeText={input => (text = input)}
+        onChangeText={onChangeText}
+        value={props.text}
         placeholder="Add Todo"
       />
       <AddTodo onPress={props.onPress} />

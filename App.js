@@ -15,11 +15,11 @@ export default function App() {
   ]);
 
   //   Define a state called text and a function to set the state variable
-  // const [text, setText] = useState('');
+  const [text, setText] = useState('');
 
   //   newTodo function creates a new todo item with unique key
   const newTodo = () => {
-    console.log('helllllooooo');
+    // console.log('helllllooooo');
     // Checking if user has entered some text
     // If its true the new todo item is added into the array using setTodos function
     if (text.length > 0) {
@@ -52,8 +52,9 @@ export default function App() {
     setTodos(newTodos);
   };
 
-  const updateText = (new) => {
-    text = new;
+  // Create a function to update the text and impliment it in the external Header component file
+  const updateText = newText => {
+    text = (newText);
   };
 
   return (
@@ -65,7 +66,9 @@ export default function App() {
           {/* FlatList needs specific props - check them in documentation Arlin linked */}
           {/* Needs data prop and renderItem function */}
           <FlatList
-            ListHeaderComponent={() => <Header onPress={newTodo} />}
+            ListHeaderComponent={() => (
+              <Header text={text} updateText={updateText} onPress={newTodo} />
+            )}
             data={todos}
             // renderItem function renders each item for the list
             renderItem={({item}) => (
