@@ -69,9 +69,9 @@ export default function App() {
             value={text}
             placeholder="Add Todo"
           />
-          {/* <TouchableOpacity style={styles.addTodoButton} onPress={newTodo}>
+          <TouchableOpacity style={styles.addTodoButton} onPress={newTodo}>
             <Text style={styles.addTodoButtonText}>+</Text>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
         </View>
         {/* Contains full list content */}
         <View style={styles.list}>
