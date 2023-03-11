@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {StyleSheet, Button} from 'react-native';
 
 const AddTodo = props => {
   return <Button title="+" onPress={props.onPress} styles={styles.button} />;
