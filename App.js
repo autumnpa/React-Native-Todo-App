@@ -14,9 +14,9 @@ export default function App() {
   // Array of tasks for testing purposes
   //   Reference React.js todo app code from other exercise/assignment
   const [todos, setTodos] = useState([
-    {text: 'task 1', key: '1', completed: false},
-    {text: 'task 2', key: '2', completed: false},
-    {text: 'task 3', key: '3', completed: false},
+    // {text: 'task 1', key: '1', completed: false},
+    // {text: 'task 2', key: '2', completed: false},
+    // {text: 'task 3', key: '3', completed: false},
   ]);
 
   //   Define a state called text and a function to set the state variable
@@ -69,12 +69,14 @@ export default function App() {
             value={text}
             placeholder="Add Todo"
           />
-          {/* <TouchableOpacity style={styles.addTodoButton} onPress={newTodo}>
+          <TouchableOpacity style={styles.addTodoButton} onPress={newTodo}>
             <Text style={styles.addTodoButtonText}>+</Text>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
         </View>
         {/* Contains full list content */}
         <View style={styles.list}>
+          <Text>Tap to complete</Text>
+          <Text>Press and hold to delete</Text>
           {/* Contains the list items */}
           {/* FlatList needs specific props - check them in documentation Arlin linked */}
           {/* Needs data prop and renderItem function */}
